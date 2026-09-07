@@ -44,3 +44,15 @@ function renderResources(items) {
 document.addEventListener("DOMContentLoaded", () => {
   renderResources(initialResources);
 });
+
+const searchInput = document.getElementById("search-input");
+
+searchInput.addEventListener("input", (e) => {
+  const query = e.target.value.toLowerCase();
+  const filtered = initialResources.filter(item => 
+    item.title.toLowerCase().includes(query) ||
+    item.desc.toLowerCase().includes(query) ||
+    item.category.toLowerCase().includes(query)
+  );
+  renderResources(filtered);
+});
